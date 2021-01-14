@@ -30,3 +30,7 @@
 - HEADER가 존재 하며, 메인 사진으로 구상 
 - Model : x
 
+#### 2. 제품 목록 페이지
+![제품목록페이지](https://user-images.githubusercontent.com/73862305/104626079-d0be7700-56d8-11eb-8252-1c26bef0c70a.png)
+- HEADER가 존재 하며, 제품 목록이 나열되어 있습니다.
+- model : Board, image 

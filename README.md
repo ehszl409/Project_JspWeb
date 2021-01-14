@@ -29,12 +29,12 @@
 #### 1. 메인페이지
 ![메인페이지](https://user-images.githubusercontent.com/73862305/104624530-0a8e7e00-56d7-11eb-8028-37c13c2f70b7.png)
 - HEADER가 존재 하며, 메인 사진으로 구상 
-- Model : x
+- Model : image(사용된 사진 정보)
 
 #### 2. 제품 목록 페이지
 ![제품목록페이지](https://user-images.githubusercontent.com/73862305/104626079-d0be7700-56d8-11eb-8252-1c26bef0c70a.png)
 - 제품 목록이 나열되어 있습니다.
-- model : board(목록 정보), image(사용된 사진 정보) 
+- model : board(목록 정보) 
 
 #### 3. 제품 상세 페이지
 ![상세페이지](https://user-images.githubusercontent.com/73862305/104626075-d025e080-56d8-11eb-9420-6fc2f3f8ae4e.png)

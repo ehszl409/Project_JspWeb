@@ -52,7 +52,7 @@
 ![로그인화면](https://user-images.githubusercontent.com/73862305/104626069-cef4b380-56d8-11eb-84ca-ac3d5f3a6fc7.png)
 - 로그인을 할 수 있는 페이지 입니다.
 - 네이버 자동 로그인 방지 캡차 API와 네이버 소셜 로그인 API를 사용 합니다.
-- model : user
+- model : user(유저 정보)
 
 #### 6. 장바구니 페이지
 ![장바구니페이지](https://user-images.githubusercontent.com/73862305/104626076-d025e080-56d8-11eb-851b-2b50004d7839.png)

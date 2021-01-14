@@ -7,7 +7,7 @@
   - 핵심 서비스
     1. 회원가입 (도로명 주소 API)
     2. 로그인 (자동 로그인 방지- 네이버 캡차 API),(네이버 소셜 로그인 API)
-    3. 제품 목록 보기
+    3. 제품 목록 보기 (제품 나열 기능)
     4. 장바구니 보기
     5. 픽업 가능 매장 검색 (네이버 Maps API)
     6. 결제 (아임포트 API)
@@ -23,7 +23,7 @@
 
 
 
-### 2. 각 페이지별 모델화 구상
+### 2. 각 페이지별 DB모델화 구상
 
 #### 1. 메인페이지
 ![메인페이지](https://user-images.githubusercontent.com/73862305/104624530-0a8e7e00-56d7-11eb-8028-37c13c2f70b7.png)
@@ -33,4 +33,10 @@
 #### 2. 제품 목록 페이지
 ![제품목록페이지](https://user-images.githubusercontent.com/73862305/104626079-d0be7700-56d8-11eb-8252-1c26bef0c70a.png)
 - HEADER가 존재 하며, 제품 목록이 나열되어 있습니다.
-- model : Board, image 
+- model : board, image 
+
+#### 3. 제품 상세 페이지
+![상세페이지](https://user-images.githubusercontent.com/73862305/104626075-d025e080-56d8-11eb-9420-6fc2f3f8ae4e.png)
+- HEADER가 존재 하며, 제품의 상세 보기 페이지 입니다.
+- 제품의 상세보기 내용과 구매하거나 장바구니에 담기 버튼이 있습니다.
+- model : item (id, itemname, price, 원산지, imageId) 

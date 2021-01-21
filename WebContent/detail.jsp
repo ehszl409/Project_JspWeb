@@ -20,6 +20,14 @@
 
 <!-- Custom styles for this template -->
 <link href="css/clean-blog.min.css" rel="stylesheet">
+
+<!-- 자동 스크롤 업 버튼 css -->
+<!-- Vendor CSS Files -->
+<link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="assets/css/style.css" rel="stylesheet">
+
+
 </head>
 <body>
 
@@ -131,5 +139,55 @@
 
 	</div>
 	<!-- /.container -->
+	
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<ul class="list-inline text-center">
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-github fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+					</ul>
+					<p class="copyright text-muted">Copyright &copy; Your Website
+						2020</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+	<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+	
+	<!-- 자동 스크롤 업 버튼 -->
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+	
+	
+	<!-- Template Main JS File -->
+	<script src="assets/js/main.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="js/clean-blog.min.js"></script>
+	
 </body>
 </html>

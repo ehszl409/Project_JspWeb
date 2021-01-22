@@ -56,6 +56,8 @@
 							페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="list.jsp">제품
 							목록</a></li>
+					<li class="nav-item"><a class="nav-link" href="myPage.jsp">마이페이지
+							</a></li>
 				</ul>
 			</div>
 		</div>

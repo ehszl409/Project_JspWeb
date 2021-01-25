@@ -84,3 +84,27 @@
 	7. 결제 페이지
 	8. 마이페이지
 	
+#### 1. 메인 페이지
+![01 메인페이지](https://user-images.githubusercontent.com/73862305/105737048-cfaf0480-5f78-11eb-8ec7-a0f40e8528bc.png)
+
+#### 2. 제품 목록 페이지
+![02 목록페이지](https://user-images.githubusercontent.com/73862305/105737024-cb82e700-5f78-11eb-97bf-4a15c7ece495.png)
+
+#### 3. 제품 상세 페이지
+![05 상세보기페이지](https://user-images.githubusercontent.com/73862305/105737036-cde54100-5f78-11eb-943f-65510f196825.png)
+
+#### 4. 회원가입 페이지
+![04 회원가입페이지](https://user-images.githubusercontent.com/73862305/105737033-cde54100-5f78-11eb-9927-f219a9f504c0.png)
+
+#### 5. 로그인 페이지
+![03 로그인페이지](https://user-images.githubusercontent.com/73862305/105737030-cd4caa80-5f78-11eb-87ef-4b3993d9a771.png)
+
+#### 6. 장바구니 페이지
+![06 장바구니페이지](https://user-images.githubusercontent.com/73862305/105737039-ce7dd780-5f78-11eb-8a09-e3b26a9066c0.png)
+
+#### 7. 결제 페이지
+![07 결제하기페이지](https://user-images.githubusercontent.com/73862305/105737044-ce7dd780-5f78-11eb-8bd1-a231b9f8fa4b.png)
+
+#### 8. 마이페이지
+![08 마이페이지](https://user-images.githubusercontent.com/73862305/105737046-cf166e00-5f78-11eb-8214-b7a3417366dc.png)
+	

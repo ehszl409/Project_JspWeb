@@ -84,7 +84,7 @@
 
 		<!-- Page Heading -->
 		<h1 class="my-4">
-			제품 목록 <small>제품을 클릭해 주세요:)</small>
+			제품 목록 <small>제품을 선택해 주세요:)</small>
 		</h1>
 
 		<div class="row">

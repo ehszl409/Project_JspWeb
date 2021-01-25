@@ -11,6 +11,7 @@
   src="https://code.jquery.com/jquery-3.5.1.slim.js"
   integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
   crossorigin="anonymous"></script>
+  
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +28,7 @@
 </head>
 
 <body>
+
 
 <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -45,7 +47,7 @@
             <a class="nav-link" href="login.jsp">로그인</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.jsp">장바구니</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/user?cmd=joinForm">회원가입</a>
           </li>
         </ul>
       </div>

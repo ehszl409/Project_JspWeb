@@ -107,4 +107,25 @@
 
 #### 8. 마이페이지
 ![08 마이페이지](https://user-images.githubusercontent.com/73862305/105737046-cf166e00-5f78-11eb-8214-b7a3417366dc.png)
+
+## user DB 구체화 및 로그인 회원가입 구현 - 01/26(화)
+
+#### 1. user DB
+```mysql
+	CREATE TABLE user(
+	id int primary key auto_increment,
+    username varchar(100) not null unique,
+    password varchar(100) not null,
+    email varchar(100) not null,
+    address varchar(100),
+    createDate timestamp
+)engine=InnoDB default charset=utf8;
+```
+
+#### 2. 회원가입 구현
+![01  회원가입구현DB](https://user-images.githubusercontent.com/73862305/105753723-79e45780-5f8c-11eb-94b0-45ea8675d996.png)
+
+#### 3. 로그인 구현 
+![로그인](https://user-images.githubusercontent.com/73862305/105755567-cfb9ff00-5f8e-11eb-9c02-6b9894506a03.gif)
+
 	

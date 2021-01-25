@@ -9,53 +9,57 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.park.reservation.domain.user.User;
 import com.park.reservation.domain.user.dto.JoinReqDto;
+import com.park.reservation.domain.user.dto.LoginReqDto;
 import com.park.reservation.service.UserService;
 import com.park.reservation.utill.Script;
-
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public UserController() {
-        super();
-       
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UserController() {
+		super();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
-	
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String cmd = request.getParameter("cmd");
 		UserService userService = new UserService();
-		
-		if(cmd.equals("joinForm")) {
+
+		if (cmd.equals("joinForm")) {
 			System.out.println("joinForm에 접근함.");
-			response.sendRedirect("/breadReservation/joinForm.jsp");
-		} else if(cmd.equals("join")) {
+			response.sendRedirect("joinForm.jsp");
+		} else if (cmd.equals("join")) {
 			System.out.println("join에 접근함");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String email = request.getParameter("email");
 			String address = request.getParameter("address");
-			
+
 			JoinReqDto dto = new JoinReqDto();
 			dto.setUsername(username);
 			dto.setPassword(password);
 			dto.setEmail(email);
 			dto.setAddress(address);
 			System.out.println("회원가입 : " + dto);
-			
+
 			int result = userService.회원가입(dto);
-			if(result == 1) {
+			if (result == 1) {
 				response.sendRedirect("index.jsp");
 			} else {
 				Script.back(response, "회원가입 실패");
@@ -72,8 +76,33 @@ public class UserController extends HttpServlet {
 				out.print("fail");
 			}
 			out.flush();
+		} else if (cmd.equals("loginForm")) {
+			System.out.println("loginForm에 접근함.");
+			response.sendRedirect("loginForm.jsp");
+		} else if (cmd.equals("login")) {
+			System.out.println("login에 접근함.");
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+
+			LoginReqDto dto = new LoginReqDto();
+			dto.setUsername(username);
+			dto.setPassword(password);
+
+			User userEntity = userService.로그인(dto);
+
+			if (userEntity != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("principal", userEntity);
+				response.sendRedirect("index.jsp");
+			} else {
+				Script.back(response, "로그인에 실패 했습니다.");
+			}
+
+		} else if (cmd.equals("logout")) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.sendRedirect("index.jsp");
 		}
-		
 	}
 
 }

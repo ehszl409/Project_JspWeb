@@ -1,6 +1,6 @@
+*
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
 	integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> 
 
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
 				<c:when test="${sessionScope.principal != null}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="list.jsp">케이크목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/item?cmd=list&page=0">케이크목록</a></li>
 							<li class="nav-item"><a class="nav-link" href="myPage.jsp">마이페이지
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="cart.jsp">장바구니</a>

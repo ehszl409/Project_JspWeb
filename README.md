@@ -123,9 +123,44 @@
 ```
 
 #### 2. 회원가입 구현
-![01  회원가입구현DB](https://user-images.githubusercontent.com/73862305/105753723-79e45780-5f8c-11eb-94b0-45ea8675d996.png)
+![회원가입장면](https://user-images.githubusercontent.com/73862305/105882404-f63c7080-6048-11eb-99ad-b3bef3ebea43.gif)
+
+![01  회원가입구현DB](https://user-images.githubusercontent.com/73862305/105882600-300d7700-6049-11eb-8c06-0f55738713f8.png)
+
 
 #### 3. 로그인 구현 
 ![로그인](https://user-images.githubusercontent.com/73862305/105755567-cfb9ff00-5f8e-11eb-9c02-6b9894506a03.gif)
 
+## item DB, image DB 및 제품목록과 상세보기 구현 - 01/26(화)
+
+#### 1. image DB
+```mysql
+	CREATE TABLE image(
+	 id int primary key auto_increment,
+   	 imagename varchar(100) not null unique,
+    	 image mediumblob not null,
+    	 createDate timestamp
+	)engine=InnoDB default charset=utf8;
+```
+
+#### 2. item DB
+```mysql
+	CREATE TABLE item(
+	 id int primary key auto_increment,
+    	 imageId int,
+   	 itemname varchar(100) not null,
+   	 price int,
+   	 content longtext,
+   	 subcontent varchar(100),
+   	 make varchar(100),
+  	 sellByDate varchar(100),
+   	 calorie varchar(100),
+   	 material varchar(100),
+  	 createDate timestamp,
+   	 foreign key (imageId) references image (id)
+	)engine=InnoDB default charset=utf8;
+```
+
+#### 3. 제품목록 및 상세보기
+![제품목록및상세보기](https://user-images.githubusercontent.com/73862305/105888017-c2b11480-604f-11eb-932a-6d485b879a27.gif)
 	

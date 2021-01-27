@@ -31,7 +31,7 @@
 			<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 				<div class="card h-100">
 					<a href="item?cmd=detail&id=${item.id}"><img class="card-img-top"
-						src="${item.image}" style="width: 100%; height: 100%;"></a>
+						src="${item.image}" style=""></a>
 					<div class="card-body">
 						<h4 class="card-title">
 							<a href="item?cmd=detail&id=${item.id}">${item.itemname}</a>

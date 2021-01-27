@@ -164,3 +164,46 @@
 #### 3. 제품목록 및 상세보기
 ![제품목록및상세보기](https://user-images.githubusercontent.com/73862305/105888017-c2b11480-604f-11eb-932a-6d485b879a27.gif)
 	
+## cart DB 장바구니 구현 - 01/27(수)
+
+#### 1. cart DB
+```mysql
+	create table cart(
+	 id int primary key auto_increment,
+	 userId int not null,
+	 itemId int not null,
+	 totalPrice int,
+	 createDate timestamp,
+	 foreign key (userId) references user (id),
+	 foreign key (itemId) references item (id)
+	)engine=InnoDB default charset=utf8;
+```
+
+#### 2. 장바구니 구현
+![장바구니구현](https://user-images.githubusercontent.com/73862305/106025489-21d45f00-610c-11eb-8f98-e516368b0b2c.gif)
+- 장바구니 추가는 ajax통신으로 구현했습니다.
+- 장바구니에 중복된 제품은 userId와 itemId를 통해 select된 값이 있으면 return되는 값을 달리하여 구현했습니다.
+- 장바구니 목록은 로그인된 userId 값을 기준으로 데이터를 뿌렸습니다.
+- 장바구니 삭제는 ajax통신으로 구현했습니다.
+- 장바구니 삭제는 itemId와 userId로 select된 값을 Delete했습니다.
+- 장바구니 총 금액은 userId로 inner join 된 테이블을 select하고 sum(price)를 통해 찾았습니다.
+
+#### 2-1. 장바구니 목록 찾기 쿼리
+```mysql
+	select c.id, c.userId, c.itemId, z.itemname, z.price, z.make, z.calorie, z.sellByDate, z.material, z.image from
+	cart c inner join 
+	(select i.id, i.itemname, i.price, i.make, i.calorie, i.sellByDate, i.material, m.image from
+	item i inner join image m 
+	on i.imageId = m.id) as z
+	on c.itemId = z.id
+	where c.userId = ?;
+```
+- 두번의 inner join을 사용했습니다.
+
+#### 2-2. 장바구니 총 금액 찾기 쿼리
+```mysql
+	SELECT sum(price) FROM 
+	cart c inner join item i 
+	on c.itemId = i.id
+	WHERE c.userId = 2;
+```

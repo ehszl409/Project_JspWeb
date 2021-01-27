@@ -30,9 +30,8 @@
 	<!-- Portfolio Item Row -->
 	<div class="row">
 
-		<div class="col-md-8">
-			<img class="img-fluid" src="${dto.image}"
-				style="width: 100%; height: 100%">
+		<div class="col-md-8 d-flex align-items-center d-flex justify-content-center">
+			<img class="img-fluid" src="${dto.image}">
 		</div>
 
 		<div class="col-md-4">
@@ -45,7 +44,9 @@
 				<li>유통기한 : ${dto.sellByDate}</li>
 				<li>알레르기 성분 : ${dto.material}</li>
 			</ul>
-			<h4 class="my-3">가격 : ${dto.price}원</h4><a class="btn btn-primary" href="cart.jsp">장바구니에 담기</a>
+			<h4 class="my-3">가격 : ${dto.price}원</h4>
+			<!-- 자바스크립트와 분리를 위해서 함수에 매개변수를 통해서 전달 받아야 합니다. -->
+			<a class="btn btn-primary"  onclick="add(${dto.id},${sessionScope.principal.id})">장바구니에 담기</a>
 		</div>
 
 	</div>
@@ -119,6 +120,9 @@
 
 <!-- Custom scripts for this template -->
 <script src="js/clean-blog.min.js"></script>
+
+<!-- 장바구니에 추가하는 스크립트 -->
+<script src="js/addCart.js"></script>
 
 </body>
 </html>

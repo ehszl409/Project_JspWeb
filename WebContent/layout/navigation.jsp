@@ -10,9 +10,16 @@
 <meta charset="utf-8">
 <title>장바구니</title>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+<!-- 아임포트 -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery00
+-3.5.1.slim.js"
 	integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

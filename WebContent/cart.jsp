@@ -57,7 +57,7 @@
 	<!-- /.row -->
 	<div class="d-flex justify-content-around">
 			<h2>총 금액 : ${totalPrice}원 </h2>
-			<a class="btn btn-primary" href="payForm.jsp">결제하기</a>
+			<a class="btn btn-primary" href="<%=request.getContextPath()%>/order?cmd=addOrder&id=${sessionScope.principal.id}">주문하기</a>
 	</div>
 
 </div>

@@ -207,3 +207,58 @@
 	on c.itemId = i.id
 	WHERE c.userId = 2;
 ```
+
+## 주문 페이지와 결제 하기 구현 - 01/29(금)
+
+#### 1. 주문 페이지
+![주문페이지](https://user-images.githubusercontent.com/73862305/106312769-888f7f00-62aa-11eb-9f02-dcdb3e792d7b.gif)
+ - 주문 페이지는 장바구니 페이지 에서 데이터를 넘겨 받으면 더 이상 장바구니의 간섭을 받으면 안됩니다.
+ - 주문 페이지는 결제 페이지와 별도의 DB와 컨트롤러 서비스 DAO를 가지도록 했습니다.
+ - 장바구니에서 다수의 제품을 주문 DB에 넣을 땐 INSERT SELECT 문을 사용했습니다.
+	
+#### 1-1. orderInfo DB
+```mysql
+	create table orderInfo(
+	  id int primary key auto_increment,
+	  userId int not null, 
+  	  itemId int not null,
+  	  createDate timestamp,
+  	  foreign key (userId) references user (id)
+	)engine=InnoDB default charset=utf8;
+```
+	
+#### 2. 결제 하기
+![결재하기](https://user-images.githubusercontent.com/73862305/106312773-8af1d900-62aa-11eb-838e-c9a22452449e.gif)
+ - 결제하기는 아임포트 API를 통해서 구현했습니다.
+ - 결제하기에서 "Uncaught SyntaxError: missing ) after argument list" 라는 이슈가 발생했는데 자바스트크립트와 HTML과의 매개인자를 주고 받는 과정에서 생긴 이슈 입니다.
+ - 해당 이슈는 매개인자를 넘겨줄때 문자열로 인식을 못해서 발생하는 이슈로 해당 매개인자를 ' ' 작은 따옴표로 감싸줘야 합니다.
+ - 아임포트에서 결제가 성공하면 ajax통신을 통해 결제 정보를 컨트롤러로 넘겨 줬습니다.
+ - 결제가 완료된 후 ajax응답을 통해 결제 완료 페이지로 이동해 방금 결제한 내역을 보여 지도록 했습니다.
+ - 과거 결제 내역과 구분을 두기 위해 아임포트에서 결제 성공시 부여되는 고유 ID와 사용자 ID를 통해서 DB를 조회 했습니다.
+
+#### 2-1. pay DB
+```mysql
+	create table pay(
+	  id int primary key auto_increment,
+	  userId int,
+  	  payName varchar(100),
+   	  payAmount varchar(100),
+    	  buyer_email varchar(100),
+   	  buyer_name varchar (100),
+  	  buyer_tel varchar(100),
+   	  buyer_addr varchar(100),
+   	  pay_method varchar(100),
+   	  merchant_uid varchar(100),
+   	  pg_tid varchar(100),
+  	  imp_uid varchar(100),
+  	  paid_at varchar(100),
+  	  pickup varchar(100),
+   	  message longtext,
+   	  createDate timestamp,
+   	  foreign key (userId) references user (id)
+	)engine=InnoDB default charset=utf8;
+```
+
+	
+	
+

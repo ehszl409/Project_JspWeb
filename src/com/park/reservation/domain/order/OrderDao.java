@@ -3,10 +3,12 @@ package com.park.reservation.domain.order;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.park.reservation.config.DB;
+import com.park.reservation.domain.order.dto.AddStoreReqDto;
 import com.park.reservation.domain.order.dto.OrderReqDto;
 
 
@@ -113,6 +115,65 @@ public class OrderDao {
 		}
 		return -1;
 	}
+	
+	public int saveStore(AddStoreReqDto dto) {
+		String sql = "INSERT INTO store(userId, name, roadAddress, address, phone, createDate) VALUES(?,?,?,?,?,now())";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int generateKey;
+		try {
+			pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, dto.getUserId());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getRoadAddress());
+			pstmt.setString(4, dto.getAddress());
+			pstmt.setString(5, dto.getPhone());
+			int result = pstmt.executeUpdate();
+			
+			// storeId를 리턴 해주기 위한 방법.
+			rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				generateKey = rs.getInt(1);
+				System.out.println("생성된 ID키:" + generateKey);
+				if(result == 1) {
+					return generateKey;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt);
+		}
+		return -1;
+	}
 
+	public Store findById(int id) {
+		String sql = "SELECT id, userId, name, roadAddress, address, phone, createDate FROM store WHERE id = ?";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();	
+			if(rs.next()) {
+				Store store = new Store();
+				store.setId(rs.getInt("id"));
+				store.setUserId(rs.getInt("userId"));
+				store.setName(rs.getString("name"));
+				store.setRoadAddress(rs.getString("roadAddress"));
+				store.setAddress(rs.getString("address"));
+				store.setPhone(rs.getString("phone"));
+				store.setCreateDate(rs.getTimestamp("createDate"));
+				return store;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt);
+		}
+		return null;
+	}
 
 }

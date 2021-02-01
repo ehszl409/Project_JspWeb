@@ -8,6 +8,7 @@ import lombok.Data;
 public class Pay {
 	private int id;
 	private int userId;
+	private int storeId;
 	private String payName;
 	private String payAmount;
 	private String buyer_email;

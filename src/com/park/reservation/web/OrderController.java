@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.park.reservation.domain.CommonRespDto;
+import com.park.reservation.domain.order.Store;
+import com.park.reservation.domain.order.dto.AddStoreReqDto;
 import com.park.reservation.domain.order.dto.OrderReqDto;
 
 import com.park.reservation.service.OrderService;
@@ -50,7 +54,7 @@ public class OrderController extends HttpServlet {
 			if(dto != null) {
 				request.setAttribute("totalPrice", totalPrice);
 				request.setAttribute("dto", dto);
-				RequestDispatcher dis = request.getRequestDispatcher("orderForm.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("order/orderForm.jsp");
 				dis.forward(request, response);
 			} else {
 				Script.back(response, "주문목록을 가져오는데 실패했습니다.");
@@ -63,14 +67,48 @@ public class OrderController extends HttpServlet {
 			int result = orderService.주문추가(id);
 			
 			if(result != -1) {
-				RequestDispatcher dis = request.getRequestDispatcher("/order?cmd=orderForm&id="+ id);
+				RequestDispatcher dis = request.getRequestDispatcher("order?cmd=orderForm&id="+ id);
 				dis.forward(request, response);
 			} else {
 				Script.back(response, "결제창을 불러오는데 실패했습니다.");
 			}
+		} else if(cmd.equals("addStore")) {
+			System.out.println("addStore접근 확인 됨.");
+			BufferedReader br = request.getReader();
+			String readData = br.readLine();
+			System.out.println("readData: " + readData);
 			
+			Gson gson = new Gson();
+			AddStoreReqDto dto = gson.fromJson(readData, AddStoreReqDto.class);
+			CommonRespDto<Store> commonRespDto = new CommonRespDto<>();
 			
+			int result = orderService.매장추가(dto);
+			if(result != -1) {
+				Store store = orderService.매장찾기(result);
+				commonRespDto.setStatusCode(1);
+				commonRespDto.setData(store);
+			} else {
+				commonRespDto.setStatusCode(-1);
+			}
+			
+			String respData = gson.toJson(commonRespDto);
+			Script.responseData(response, respData);
+			
+		} else if(cmd.equals("storeDetail")) {
+			System.out.println("storeDetail에 접근 함.");
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			Store store = orderService.매장찾기(id);
+			
+			if(store != null) {
+				request.setAttribute("store", store);
+				RequestDispatcher dis = request.getRequestDispatcher("order/orderForm.jsp");
+				dis.forward(request, response);
+			} else {
+				Script.back(response, "매장 정보를 가져오는데 실패 했습니다.");
+			}
 		}
+		
 	}
 
 }

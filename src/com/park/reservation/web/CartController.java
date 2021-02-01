@@ -63,8 +63,6 @@ public class CartController extends HttpServlet {
 			} else {
 				commonRespDto.setStatusCode(-1);				
 			}
-			
-			
 			String respData = gson.toJson(commonRespDto);
 			Script.responseData(response, respData);
 		} else if(cmd.equals("list")) {
@@ -78,7 +76,7 @@ public class CartController extends HttpServlet {
 			if(dto != null) {
 				request.setAttribute("totalPrice", totalPrice);
 				request.setAttribute("dto", dto);
-				RequestDispatcher dis = request.getRequestDispatcher("cart.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("cart/cart.jsp");
 				dis.forward(request, response);
 			} else {
 				Script.back(response, "주문목록을 가져오는데 실패했습니다.");

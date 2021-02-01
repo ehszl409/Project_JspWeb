@@ -8,7 +8,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>장바구니</title>
+<title>케이크를 예약해보자!</title>
 
 <!-- 아임포트 -->
 <script type="text/javascript"
@@ -16,10 +16,7 @@
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<!-- <script src="https://code.jquery.com/jquery00
--3.5.1.slim.js"
-	integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-	crossorigin="anonymous"></script> -->
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,6 +25,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -71,7 +69,7 @@
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link"
 								href="<%=request.getContextPath()%>/item?cmd=list&page=0">케이크목록</a></li>
-							<li class="nav-item"><a class="nav-link" href="myPage.jsp">마이페이지
+							<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user?cmd=myPage&id=${sessionScope.principal.id}">마이페이지
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/cart?cmd=list&id=${sessionScope.principal.id}">장바구니</a>
 							</li>

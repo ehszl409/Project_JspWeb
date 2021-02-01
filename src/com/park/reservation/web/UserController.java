@@ -3,7 +3,9 @@ package com.park.reservation.web;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +16,11 @@ import javax.servlet.http.HttpSession;
 import com.park.reservation.domain.user.User;
 import com.park.reservation.domain.user.dto.JoinReqDto;
 import com.park.reservation.domain.user.dto.LoginReqDto;
+import com.park.reservation.domain.user.dto.MyPageReqDto;
 import com.park.reservation.service.UserService;
 import com.park.reservation.utill.Script;
+
+import javafx.scene.control.Alert;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
@@ -43,8 +48,14 @@ public class UserController extends HttpServlet {
 
 		if (cmd.equals("joinForm")) {
 			System.out.println("joinForm에 접근함.");
-			response.sendRedirect("joinForm.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("user/joinForm.jsp");
+			dis.forward(request, response);
+		} else if(cmd.equals("main")) {
+			System.out.println("main에 접근함.");
+			RequestDispatcher dis = request.getRequestDispatcher("main/main.jsp");
+			dis.forward(request, response);
 		} else if (cmd.equals("join")) {
+		
 			System.out.println("join에 접근함");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -78,7 +89,8 @@ public class UserController extends HttpServlet {
 			out.flush();
 		} else if (cmd.equals("loginForm")) {
 			System.out.println("loginForm에 접근함.");
-			response.sendRedirect("loginForm.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("user/loginForm.jsp");
+			dis.forward(request, response);
 		} else if (cmd.equals("login")) {
 			System.out.println("login에 접근함.");
 			String username = request.getParameter("username");
@@ -102,6 +114,24 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("index.jsp");
+		} else if (cmd.equals("myPage")) {
+			System.out.println("myPage에 접근 함.");
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			List<MyPageReqDto> dtos = userService.마이페이지(id);
+			User user = userService.유저정보(id);
+			if(dtos != null && user != null) {
+				request.setAttribute("userInfo", user);
+				request.setAttribute("MyPageInfo", dtos);
+				RequestDispatcher dis = request.getRequestDispatcher("user/myPage.jsp");
+				dis.forward(request, response);
+			} else {
+				Script.back(response, "마이페이지 불러오기에 실패 했습니다.");
+			}
+			
+		} else if (cmd.equals("orderItem")) {
+			System.out.println("orderItem에 접근 함.");
+			
 		}
 	}
 

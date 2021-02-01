@@ -55,7 +55,7 @@ public class ItemController extends HttpServlet {
 			
 			request.setAttribute("lastPage", lastPage);
 			request.setAttribute("itemDto", dto);
-			RequestDispatcher dis = request.getRequestDispatcher("list.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("item/list.jsp");
 			dis.forward(request, response);
 		} else if(cmd.equals("detail")) {
 			System.out.println("detail접근 확인.");
@@ -68,7 +68,7 @@ public class ItemController extends HttpServlet {
 			} else {
 				request.setAttribute("dto", dto);
 				request.setAttribute("listDto", listDto);
-				RequestDispatcher dis = request.getRequestDispatcher("detail.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("item/detail.jsp");
 				dis.forward(request, response);
 			}
 		}

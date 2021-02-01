@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.park.reservation.domain.CommonRespDto;
 import com.park.reservation.domain.cart.dto.addReqDto;
+import com.park.reservation.domain.pay.Pay;
 import com.park.reservation.domain.pay.dto.AddReqDto;
 import com.park.reservation.domain.pay.dto.InfoReqDto;
+import com.park.reservation.domain.pay.dto.PayDetailReqDto;
 import com.park.reservation.service.PayService;
 import com.park.reservation.utill.Script;
 
@@ -50,7 +52,7 @@ public class PayController extends HttpServlet {
 			Gson gson = new Gson();
 			AddReqDto dto = gson.fromJson(readData, AddReqDto.class);
 			CommonRespDto<AddReqDto> commonRespDto = new CommonRespDto<>();
-
+			
 			int result = payService.결제추가(dto);
 			if (result != -1) {
 				commonRespDto.setStatusCode(1);
@@ -68,10 +70,15 @@ public class PayController extends HttpServlet {
 			System.out.println("id: " + id);
 			System.out.println("mId: " + mId);
 
-			InfoReqDto dto = payService.결제정보(id, mId);
-			request.setAttribute("payInfo", dto);
-			RequestDispatcher dis = request.getRequestDispatcher("paySuccessPage.jsp");
-			dis.forward(request, response);
+			PayDetailReqDto dto = payService.결제정보(id, mId);
+			int result = payService.주문아이템(id, dto.getId());
+			if(result != -1) {
+				request.setAttribute("payInfo", dto);
+				RequestDispatcher dis = request.getRequestDispatcher("pay/paySuccessPage.jsp");
+				dis.forward(request, response);				
+			} else {
+				Script.back(response, "결제정보를 저장하는데 오류가 발생했습니다.");
+			}
 
 		}
 

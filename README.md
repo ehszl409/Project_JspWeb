@@ -259,6 +259,33 @@
 	)engine=InnoDB default charset=utf8;
 ```
 
+## 카카오맵 API연동 및 마이페이지 구현 - 01/31(일)
+
+#### 1. 카카오맵 API
+![카카오맵연동하기](https://user-images.githubusercontent.com/73862305/106489000-a0a80e00-64f7-11eb-9a71-5266d90a80db.gif)
+ - 카카오 맵 API를 통해 검색된 매장 지점을 클릭하면 매장 정보를 추출합니다
+ - 추출한 매장 정보를 AJAX 통신으로 DOM을 만들어 줍니다.
+ - 지도의 다른 마커를 클릭하면 AJAX통신으로 동적으로 매장 정보를 담은 DOM이 바뀝니다.
+ - 사용자가 클릭할 떄 마다 DB에 매장 정보가 저장되고 마지막에 클릭한 매장을 선택한 매장으로 정합니다.
+
+#### 1-1. Store DB
+ ```mysql
+	create table store(
+	 id int primary key auto_increment,
+	 userId int not null,
+	 name varchar(100),
+	 roadAddress varchar(100),
+	 address varchar(100),
+	 phone varchar(100),
+	 createDate timestamp,
+	 foreign key (userId) references user (id)
+	)engine=InnoDB default charset=utf8;
+```
 	
-	
+#### 2. 마이페이지
+![마이페이지](https://user-images.githubusercontent.com/73862305/106489004-a271d180-64f7-11eb-80aa-0ac203ae21d1.gif)
+ - 유저 정보, 결제 정보, 매장 정보를 보여주는 마이페이지 입니다.
+ - 결제 건에 대한 아이템 정보는 완성하지 못했습니다.
+ 
+
 

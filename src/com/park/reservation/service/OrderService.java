@@ -3,6 +3,8 @@ package com.park.reservation.service;
 import java.util.List;
 
 import com.park.reservation.domain.order.OrderDao;
+import com.park.reservation.domain.order.Store;
+import com.park.reservation.domain.order.dto.AddStoreReqDto;
 import com.park.reservation.domain.order.dto.OrderReqDto;
 
 public class OrderService {
@@ -20,6 +22,14 @@ public class OrderService {
 		} else {
 			return -1;
 		}
+	}
+	
+	public int 매장추가(AddStoreReqDto dto) {
+		return orderDao.saveStore(dto);
+	}
+	
+	public Store 매장찾기(int id) {
+		return orderDao.findById(id);
 	}
 	
 	public List<OrderReqDto> 주문목록(int id){
